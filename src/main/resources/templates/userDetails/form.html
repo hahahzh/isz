@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<title>users details : Create</title>
+</head>
+<body>
+
+	<div layout:fragment="content" class="container">
+	<div class="container theme-showcase" role="main">
+		<form id="userDetailsForm" th:action="@{/userDetail/form}" th:object="${userDetail}"
+			action="#" method="post" class="form-inline">
+			<div th:if="${#fields.hasErrors('*')}" class="alert alert-error">
+				<p th:each="error : ${#fields.errors('*')}" th:text="${error}">Validation error</p>
+			</div>
+	<nav class="navbar navbar-inverse text-center" style="background-color:#EF823A;">
+          <h5>个人信息 爱试装</h5>
+    </nav>
+<input type="hidden" id="id" name="id" th:value="${userDetail.id}" th:class="${#fields.hasErrors('user')} ? 'field-error'" />
+<input type="hidden" id="user" name="user" th:value="${userDetail.user.id}" th:class="${#fields.hasErrors('user')} ? 'field-error'" /> 
+
+	 <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">尺寸:</h3>
+            </div>
+            <div class="panel-body">
+   			<select class="form-control" th:field="*{size}">				
+					<option th:each="size : ${sizes}" th:value="${size.id}" th:text="${size.size_name}" th:selected="${#strings.contains(userDetail.size==null?'':userDetail.size.id,size.id)}"></option>
+				</select>
+            </div>
+          </div>
+	</div>
+	
+	 <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">脸型:</h3>
+            </div>
+            <div class="panel-body">
+                 			<select class="form-control" th:field="*{face}">				
+					<option th:each="face : ${faces}" th:value="${face.id}" th:text="${face.face_name}" th:selected="${#strings.contains(userDetail.face==null?'':userDetail.face.id,face.id)}"></option>
+				</select>
+            </div>
+          </div>
+	</div>
+	
+		 <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">发型:</h3>
+            </div>
+            <div class="panel-body">
+                 			<select class="form-control" th:field="*{hair}">				
+					<option th:each="hair : ${hairs}" th:value="${hair.id}" th:text="${hair.hair_name}" th:selected="${#strings.contains(userDetail.hair==null?'':userDetail.hair.id,hair.id)}"></option>
+				</select>
+            </div>
+          </div>
+	</div>
+	
+		 <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">肤色:</h3>
+            </div>
+            <div class="panel-body">
+                 	<select class="form-control" th:field="*{skincolor}">				
+					<option th:each="skincolor : ${skincolors}" th:value="${skincolor.id}" th:text="${skincolor.skincolor_name}" th:selected="${#strings.contains(userDetail.skincolor==null?'':userDetail.skincolor.id,skincolor.id)}"></option>
+				</select>
+            </div>
+          </div>
+	</div>
+	
+		 <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">价格区间:</h3>
+            </div>
+            <div class="panel-body">
+				<select class="form-control" th:field="*{pricerange}">				
+					<option th:each="pricerange : ${priceranges}" th:value="${pricerange.id}" th:text="${pricerange.pricerange_name}" th:selected="${#strings.contains(userDetail.pricerange==null?'':userDetail.pricerange.id,pricerange.id)}"></option>
+				</select>
+            </div>
+          </div>
+	</div>
+	
+		 <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">体型:</h3>
+            </div>
+            <div class="panel-body">
+                 			<select class="form-control" th:field="*{body}">
+					<option th:each="body : ${bodys}" th:value="${body.id}" th:text="${body.body_name}" th:selected="${#strings.contains(userDetail.body==null?'':userDetail.body.id,body.id)}"></option>
+				</select>
+            </div>
+          </div>
+	</div>
+	
+		 <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">身高:</h3>
+            </div>
+            <div class="panel-body">
+              <input type="number" class="form-control" th:field="*{height}" th:class="${#fields.hasErrors('height')} ? 'field-error'"/>CM
+            </div>
+          </div>
+	</div>
+	
+	<div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">体重:</h3>
+            </div>
+            <div class="panel-body">
+              <input type="number" class="form-control" th:field="*{weight}" th:class="${#fields.hasErrors('weight')} ? 'field-error'" />KG
+            </div>
+          </div>
+	</div>
+	
+		<div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">地址:<font color="red">(很重要)</font></h3>
+            </div>
+            <div class="panel-body">
+              <textarea rows="4" cols="50" th:field="*{address}" th:class="${#fields.hasErrors('address')} ? 'field-error'"></textarea>
+            </div>
+          </div>
+	</div>
+			<div class="col-sm-12">
+	<button type="submit" class="btn btn-default active form-control">完成</button>
+	</div>
+		</form>
+	</div>
+	</div>
+</body>
+</html>

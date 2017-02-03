@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<title>爱试装</title>
+</head>
+<body>
+
+	<div layout:fragment="content" class="container">
+	<div class="container theme-showcase" role="main">
+			
+	<nav class="navbar navbar-inverse text-center" style="background-color:#EF823A;">
+          <h5>首页</h5>
+    </nav>
+
+<div class="alert alert-success" role="alert"  th:if="${globalMessage}" th:text="${globalMessage}"></div>
+<div style="text-align:center;" class="col-sm-12">
+<img width="90%" height="90%" th:src="@{/images/home.jpg}" />
+</div>
+   
+			<div class="col-sm-12">
+			<a href="/user/reg"><button class="btn btn-default active form-control">注册</button></a>
+	<!-- <a>登录</a> -->
+</div>
+	
+	</div>
+	</div>
+</body>
+</html>
