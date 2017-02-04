@@ -37,7 +37,12 @@ import com.isz.utils.StringUtil;
 public class ApplicationController {
 	
 	@GetMapping
-	public ModelAndView list() {
+	public ModelAndView home0() {
+		return new ModelAndView("home");
+	}
+	
+	@GetMapping("/home")
+	public ModelAndView home1() {
 		return new ModelAndView("home");
 	}
 	

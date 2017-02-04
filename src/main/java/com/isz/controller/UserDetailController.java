@@ -1,25 +1,20 @@
 package com.isz.controller;
 
-import java.text.ParseException;
-import java.util.Date;
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.isz.model.BodySize;
-import com.isz.model.FaceModel;
 import com.isz.model.UserDetailModel;
-import com.isz.model.UserModel;
 import com.isz.repository.BodyModelRepository;
 import com.isz.repository.BodySizeRepository;
 import com.isz.repository.ConstellationRepository;
@@ -34,7 +29,6 @@ import com.isz.repository.SkinColorModelRepository;
 import com.isz.repository.UserDetailModelRepository;
 import com.isz.repository.UserModelRepository;
 import com.isz.utils.DateUtil;
-import com.mysql.fabric.xmlrpc.base.Params;
 
 
 
@@ -87,9 +81,12 @@ public class UserDetailController {
 	}
 
 	@RequestMapping(value = "/form/{id}",method=RequestMethod.GET)
-	public ModelAndView createForm(@PathVariable("id")Long id, UserDetailModel userDetail) {
+	public ModelAndView createForm(@PathVariable("id")Long id,@ModelAttribute UserDetailModel userDetail,RedirectAttributes redirect) {
 		userDetail = this.userDetailModelRepository.findByUserId(id);
-		if(userDetail == null)return new ModelAndView("users/register", "userDetail", userDetail);
+		if(userDetail == null){
+			redirect.addFlashAttribute("globalMessage", "请先完成注册");
+			return new ModelAndView("redirect:/user/reg");
+		}
 		ModelAndView mv = new ModelAndView("userDetails/form", "userDetail", userDetail);
 		mv.addObject("sizes",bodySizeRepository.findAll());
 		mv.addObject("faces",faceModelRepository.findAll());
@@ -107,25 +104,30 @@ public class UserDetailController {
 
 	@RequestMapping(value = "/form",method=RequestMethod.POST)
 	public ModelAndView create(
-			@PathVariable("size") String size,
-			@Valid UserDetailModel userDetail, 
+			
+			@RequestParam(value = "size", required = true) String size,
+			@RequestParam(value = "face", required = true) String face,
+			@RequestParam(value = "hair", required = true) String hair,
+			@RequestParam(value = "skincolor", required = true) String skincolor,
+			@RequestParam(value = "pricerange", required = true) String pricerange,
+			@RequestParam(value = "body", required = true) String body,
+			@Valid UserDetailModel userDetail,
 			BindingResult result,
 			RedirectAttributes redirect) {
 		
-//		UserDetailModel userDetail = this.userDetailModelRepository.findByUserId(Long.parseLong(user));
-//		userDetail.setUser(this.userModelRepository.findOne(user));
-//		userDetail.setFace(this.faceModelRepository.findOne(face));
-//		userDetail.setHair(this.hairModelRepository.findOne(hair));
-//		userDetail.setSkincolor(this.skinColorModelRepository.findOne(skincolor));
-//		userDetail.setPricerange(this.priceRangeRepository.findOne(pricerange));
-//		userDetail.setBody(this.bodyModelRepository.findOne(body));
+		userDetail.setSize(this.bodySizeRepository.findOne(Long.parseLong(size)));
+		userDetail.setFace(this.faceModelRepository.findOne(Long.parseLong(face)));
+		userDetail.setHair(this.hairModelRepository.findOne(Long.parseLong(hair)));
+		userDetail.setSkincolor(this.skinColorModelRepository.findOne(Long.parseLong(skincolor)));
+		userDetail.setPricerange(this.priceRangeRepository.findOne(Long.parseLong(pricerange)));
+		userDetail.setBody(this.bodyModelRepository.findOne(Long.parseLong(body)));
 		userDetail.setUpdateDate(DateUtil.newDate());
 //		userDetail.setAddress(address);
 //		userDetail.setHeight(Integer.parseInt(height));
 //		userDetail.setWeight(Integer.parseInt(weight));
 		userDetail = this.userDetailModelRepository.save(userDetail);
 		redirect.addFlashAttribute("globalMessage", "就等着收礼物吧！！！");
-		return new ModelAndView("home");
+		return new ModelAndView("redirect:/home");
 	}
 
 	@RequestMapping("foo")

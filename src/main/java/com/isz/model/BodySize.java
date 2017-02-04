@@ -50,6 +50,6 @@ public class BodySize {
 
 
 	public String toString() {
-		return String.format("Body[name='%s']", size_name);
+		return size_name;
 	}
 }

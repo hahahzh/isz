@@ -11,6 +11,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -65,18 +66,24 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(value="/sendCD",method=RequestMethod.POST)
-	public ModelAndView checkDigit(@RequestParam(value="mobile",required = true) String mobile,@ModelAttribute UserModel user, RedirectAttributes redirect) {
+	public ModelAndView checkDigit(@RequestParam(value="mobile",required = true) String mobile,
+			@ModelAttribute UserModel user, 
+			BindingResult result,
+			RedirectAttributes redirect) {
 		
 		user = userModelRepository.findByMobile(Long.parseLong(mobile.trim()));
 		if(user != null){
-			return new ModelAndView("users/register", "userError", "您已经注册过啦！");
+			redirect.addFlashAttribute("globalMessage", "您已经注册过啦！");
+			 
+			result.addError(new ObjectError("globalMessage", "您已经注册过啦！"));
+			return new ModelAndView("users/register", "formErrors", result.getAllErrors());
 		}
 		
 		try {
 			sendSMS.checkDigit(Long.parseLong(mobile.trim()));
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ModelAndView("users/form", "userError", "发送验证码失败，请重新再试");
+			return new ModelAndView("users/register", "globalMessage", "发送验证码失败，请重新再试");
 		}
 		redirect.addAttribute("globalMessage", "验证码发送成功");
 		return new ModelAndView("users/register","user", user);
@@ -148,7 +155,7 @@ public class UserController {
 		}
 		user = this.userModelRepository.save( user);
 		redirect.addFlashAttribute("globalMessage", "Successfully created a new user");
-		return new ModelAndView("userDetail/form/{user.id}", "user.id", user.getId());
+		return new ModelAndView("redirect:/userDetail/form/{user.id}", "user.id", user.getId());
 	}
 
 	@RequestMapping("foo")
