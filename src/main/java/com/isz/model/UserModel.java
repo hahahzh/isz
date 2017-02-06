@@ -62,18 +62,20 @@ public class UserModel {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date birthday;
 	
-	@Column(columnDefinition="TIMESTAMP")
+	@Column(columnDefinition="TIMESTAMP",updatable = true)
 	@NotNull
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")  //取日期时使用    
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@org.hibernate.annotations.CreationTimestamp
 	private Date createDate;
 	
-	@Column(columnDefinition="TIMESTAMP")
+	@Column(columnDefinition="TIMESTAMP",updatable = true)
 	@NotNull
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")  //取日期时使用    
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@org.hibernate.annotations.UpdateTimestamp
 	private Date updateDate;
 	
 	private String school;
