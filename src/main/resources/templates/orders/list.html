@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<title>orders : View all</title>
+</head>
+<body>
+	<h1 layout:fragment="header">orders : View all</h1>
+	<div layout:fragment="content" class="container">
+		<div class="pull-right">
+			<a href="form.html" th:href="@{/(form)}">Create order</a>
+		</div>
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<td>订单流水号</td>
+					<td>商品名称</td>
+					<td>价格</td>
+					<td>折扣</td>
+					<td>数量</td>
+					<td>单位</td>
+					<td>销售时间</td>
+					<td>物流状态</td>
+					<td>支付状态</td>
+					<td>更新时间</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:if="${orders.empty}">
+					<td colspan="3">无采购信息</td>
+				</tr>
+				<tr th:each="order : ${orders}">
+					<td><a href="view.html" th:href="@{'/' + ${order.id}}" th:text="${order.id}">1</a></td>
+					<td th:text="${order.goods.name}">1</td>
+					<td th:text="${order.goods.sales_price}">1</td>
+					<td th:text="${order.goods.rebate}">1</td>
+					<td th:text="${order.num}">1</td>
+					<td th:text="${order.order_unit}">1</td>
+					<td th:text="${order.sales_date}">1</td>
+					<td th:text="${order.logistics}">1</td>
+					<td th:text="${order.pay}">1</td>
+					<td th:text="${calendars.format(order.updateDate)}">1</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

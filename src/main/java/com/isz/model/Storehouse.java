@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.Index;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -25,6 +26,7 @@ public class Storehouse  {
 	
 	private String name;
 	
+	@Index(name = "storehouse_code")
 	private String code;
 	
 	private Integer num;

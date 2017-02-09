@@ -23,15 +23,10 @@ public class Order  {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
-	private String code;
-	
-	private String name;
-	
-	private Float rebate;
-	
-	private Double reality_price;
-	
+	@NotNull
+	private Goods goods;
+
+	@NotNull
 	private Integer num;
 	
 	private String order_unit;
@@ -51,7 +46,7 @@ public class Order  {
 	@ManyToOne
 	private UserModel user;
 	
-	
+	private String user_tmp;
 		
 	@Column(columnDefinition="TIMESTAMP")
 	@NotNull
@@ -60,7 +55,15 @@ public class Order  {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updateDate;
 
+	@Column(columnDefinition="TIMESTAMP")
+	@NotNull
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")  //取日期时使用    
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@org.hibernate.annotations.CreationTimestamp
+	private Date createDate;
 	
+	private int isShow;
 	
 
 	public Long getId() {
@@ -73,63 +76,6 @@ public class Order  {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-
-
-
-	public String getCode() {
-		return code;
-	}
-
-
-
-
-	public void setCode(String code) {
-		this.code = code;
-	}
-
-
-
-
-	public String getName() {
-		return name;
-	}
-
-
-
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-
-
-
-	public Float getRebate() {
-		return rebate;
-	}
-
-
-
-
-	public void setRebate(Float rebate) {
-		this.rebate = rebate;
-	}
-
-
-
-
-	public Double getReality_price() {
-		return reality_price;
-	}
-
-
-
-
-	public void setReality_price(Double reality_price) {
-		this.reality_price = reality_price;
-	}
-
 
 
 
@@ -238,15 +184,51 @@ public class Order  {
 
 
 
-	public void setUser(UserModel user) {
-		this.user = user;
+	public Date getCreateDate() {
+		return createDate;
 	}
 
 
 
 
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+
+
+
+	public String getUser_tmp() {
+		return user_tmp;
+	}
+
+
+
+
+	public void setUser_tmp(String user_tmp) {
+		this.user_tmp = user_tmp;
+	}
+
+
+
+
+	public void setUser(UserModel user) {
+		this.user = user;
+	}
+
+	public int getIsShow() {
+		return isShow;
+	}
+
+
+
+	public void setIsShow(int isShow) {
+		this.isShow = isShow;
+	}
+
+
 	public String toString() {
-		return name;
+		return goods.getName();
 	}
 
 }

@@ -22,15 +22,17 @@ public class Goods  {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+	@NotNull
 	private String name;
-	
+	@NotNull
 	private String code;
 	
 	private Integer num;//销售数量
-	
+	@NotNull
 	private Double nameplate_price;
+	@NotNull
 	private Float rebate;//折扣
+	@NotNull
 	private Double sales_price;
 	
 	private String memo;
@@ -60,10 +62,24 @@ public class Goods  {
 	@org.hibernate.annotations.CreationTimestamp
 	private Date createDate;
 	
+	private String goods_unit;
 	
+	private int isShow;
 
 	public Long getId() {
 		return id;
+	}
+
+
+
+	public String getGoods_unit() {
+		return goods_unit;
+	}
+
+
+
+	public void setGoods_unit(String goods_unit) {
+		this.goods_unit = goods_unit;
 	}
 
 
@@ -204,7 +220,15 @@ public class Goods  {
 		this.createDate = createDate;
 	}
 
+	public int getIsShow() {
+		return isShow;
+	}
 
+
+
+	public void setIsShow(int isShow) {
+		this.isShow = isShow;
+	}
 
 	public String toString() {
 		return name;

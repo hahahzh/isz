@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<title>users : Create</title>
+</head>
+<body>
+
+	<div layout:fragment="content" class="container">
+	<div class="container theme-showcase" role="main">
+		<form id="userForm" th:action="@{/user/form}" th:object="${user}"
+			action="#" method="post" class="form-inline">
+			<div th:if="${#fields.hasErrors('*')}" class="alert alert-error">
+				<p th:each="error : ${#fields.errors('*')}" th:text="${error}">
+					Validation error</p>
+			</div>
+	<nav class="navbar navbar-inverse text-center" style="background-color:#EF823A;">
+          <h5>个人信息 基础信息</h5>
+    </nav>
+<input type="hidden" th:field="*{id}" th:class="${#fields.hasErrors('id')} ? 'field-error'" />
+<input type="hidden" th:field="*{pwd}" th:class="${#fields.hasErrors('pwd')} ? 'field-error'" />
+<input type="hidden" th:field="*{updateDate}" th:class="${#fields.hasErrors('updateDate')} ? 'field-error'" />
+<input type="hidden" th:field="*{createDate}" th:class="${#fields.hasErrors('createDate')} ? 'field-error'" /> 
+
+<div class="alert alert-success" role="alert"  th:if="${globalMessage}" th:text="${globalMessage}"></div>
+
+    <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">姓名:</h3>
+            </div>
+            <div class="panel-body">
+              <input type="text" th:field="*{name}"  th:class="${#fields.hasErrors('name')} ? 'field-error'"/>
+            </div>
+          </div>
+	</div>
+	
+	 <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">昵称:</h3>
+            </div>
+            <div class="panel-body">
+              <input type="text" th:field="*{nickname}" th:class="${#fields.hasErrors('nickname')} ? 'field-error'" />
+            </div>
+          </div>
+	</div>
+	
+		 <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">性别:</h3>
+            </div>
+            <div class="panel-body">
+              <select class="form-control" th:field="*{gender}" id="gender" th:class="${#fields.hasErrors('nickname')} ? 'field-error'">
+ 					<option value="2">女</option>
+ 					<option value="1">男</option>
+ 				</select>
+            </div>
+          </div>
+	</div>
+	
+	 <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">生日:</h3>
+            </div>
+            <div class="panel-body">
+              <input type="date" class="form-control" th:field="*{birthday}" th:class="${#fields.hasErrors('birthday')} ? 'field-error'" />
+            </div>
+          </div>
+	</div>
+	
+		 <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">手机:</h3>
+            </div>
+            <div class="panel-body">
+              <input type="text" class="form-control" th:field="*{mobile}" th:class="${#fields.hasErrors('mobile')} ? 'field-error'" readonly="readonly"/>
+            </div>
+          </div>
+	</div>
+	
+	<div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Email:</h3>
+            </div>
+            <div class="panel-body">
+              <input type="text" class="form-control" th:field="*{email}" th:class="${#fields.hasErrors('email')} ? 'field-error'" />
+            </div>
+          </div>
+	</div>
+	
+		<div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">学校:</h3>
+            </div>
+            <div class="panel-body">
+              <input type="text" class="form-control" th:field="*{school}" th:class="${#fields.hasErrors('school')} ? 'field-error'" />
+            </div>
+          </div>
+	</div>
+			<div class="col-sm-12">
+	<button type="submit" class="btn btn-default active form-control">下一步</button>
+</div>
+		</form>
+	</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<title>storehouses : View all</title>
+</head>
+<body>
+	<h1 layout:fragment="header">storehouses : View all</h1>
+	<div layout:fragment="content" class="container">
+		<div class="pull-right">
+			<a href="form.html" th:href="@{/(form)}">Create storehouse</a>
+		</div>
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<td>商品名称</td>
+					<td>商品编号</td>
+					<td>数量</td>
+					<td>更新时间</td>
+					<td>录入时间</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:if="${storehouses.empty}">
+					<td colspan="3">无库存信息</td>
+				</tr>
+				<tr th:each="storehouse : ${storehouses}">
+					<td th:text="${storehouse.name}">1</td>
+					<td th:text="${storehouse.code}">1</td>
+					<td th:text="${storehouse.num}">1</td>
+					<td th:text="${calendars.format(storehouse.updateDate)}">1</td>
+					<td th:text="${calendars.format(storehouse.createDate)}">1</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<title>goodss : View all</title>
+</head>
+<body>
+	<h1 layout:fragment="header">goodss : View all</h1>
+	<div layout:fragment="content" class="container">
+		<div class="pull-right">
+			<a href="form.html" th:href="@{/(form)}">Create goods</a>
+		</div>
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<td>商品流水号</td>
+					<td>商品名称</td>
+					<td>商品编号</td>
+					<td>数量</td>
+					<td>单位</td>
+					<td>折扣</td>
+					<td>销售价格</td>
+					<td>录入时间</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:if="${goodss.empty}">
+					<td colspan="3">无采购信息</td>
+				</tr>
+				<tr th:each="goods : ${goodss}">
+					<td><a href="view.html" th:href="@{'/' + ${goods.id}}" th:text="${goods.id}">1</a></td>
+					<td th:text="${goods.name}">1</td>
+					<td th:text="${goods.code}">1</td>
+					<td th:text="${goods.num}">1</td>
+					<td th:text="${goods.goods_unit}">1</td>
+					<td th:text="${goods.rebate}">1</td>
+					<td th:text="${goods.sales_price}">1</td>
+					<td th:text="${calendars.format(goods.createDate)}">1</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

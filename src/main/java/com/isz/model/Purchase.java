@@ -58,6 +58,8 @@ public class Purchase  {
 
 	private String purchase_unit;
 	
+	private int isShow;
+	
 	public Long getId() {
 		return id;
 	}
@@ -222,6 +224,18 @@ public class Purchase  {
 
 	public void setPurchase_unit(String purchase_unit) {
 		this.purchase_unit = purchase_unit;
+	}
+
+
+
+	public int getIsShow() {
+		return isShow;
+	}
+
+
+
+	public void setIsShow(int isShow) {
+		this.isShow = isShow;
 	}
 
 

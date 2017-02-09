@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<title>purchases : View all</title>
+</head>
+<body>
+	<h1 layout:fragment="header">purchases : View all</h1>
+	<div layout:fragment="content" class="container">
+		<div class="pull-right">
+			<a href="form.html" th:href="@{/(form)}">Create purchase</a>
+		</div>
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<td>订单编号</td>
+					<td>商品名称</td>
+					<td>商品编号</td>
+					<td>采购价</td>
+					<td>采购员</td>
+					<td>数量</td>
+					<td>单位</td>
+					<td>采购时间</td>
+					<td>账期</td>
+					<td>录入时间</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:if="${purchases.empty}">
+					<td colspan="3">无采购信息</td>
+				</tr>
+				<tr th:each="purchase : ${purchases}">
+					<td><a href="view.html" th:href="@{'/' + ${purchase.id}}" th:text="${purchase.id}">1</a></td>
+					<td th:text="${purchase.name}">1</td>
+					<td th:text="${purchase.code}">1</td>
+					<td th:text="${purchase.purchase_price}">1</td>
+					<td th:text="${purchase.purchasing_agent}">1</td>
+					<td th:text="${purchase.num}">1</td>
+					<td th:text="${purchase.purchase_unit}">1</td>
+					<td th:text="${calendars.format(purchase.purchasing_date)}">1</td>
+					<td th:text="${purchase.account_period}">1</td>
+					<td th:text="${calendars.format(purchase.updateDate)}">1</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
