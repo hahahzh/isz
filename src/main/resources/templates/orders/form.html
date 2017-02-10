@@ -3,23 +3,22 @@
 	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
 	layout:decorate="layout">
 <head>
-<title>users : Create</title>
+<title>orders : Create</title>
 </head>
 <body>
 
 	<div layout:fragment="content" class="container">
 	<div class="container theme-showcase" role="main">
-		<form id="userForm" th:action="@{/user/form}" th:object="${user}"
+		<form id="orderForm" th:action="@{/order/form}" th:object="${order}"
 			action="#" method="post" class="form-inline">
 			<div th:if="${#fields.hasErrors('*')}" class="alert alert-error">
 				<p th:each="error : ${#fields.errors('*')}" th:text="${error}">
 					Validation error</p>
 			</div>
 	<nav class="navbar navbar-inverse text-center" style="background-color:#EF823A;">
-          <h5>个人信息 基础信息</h5>
+          <h5>订单信息 录入</h5>
     </nav>
 <input type="hidden" th:field="*{id}" th:class="${#fields.hasErrors('id')} ? 'field-error'" />
-<input type="hidden" th:field="*{pwd}" th:class="${#fields.hasErrors('pwd')} ? 'field-error'" />
 <input type="hidden" th:field="*{updateDate}" th:class="${#fields.hasErrors('updateDate')} ? 'field-error'" />
 <input type="hidden" th:field="*{createDate}" th:class="${#fields.hasErrors('createDate')} ? 'field-error'" /> 
 
@@ -28,10 +27,10 @@
     <div class="col-sm-12">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title">姓名:</h3>
+              <h3 class="panel-title">商品名称:</h3>
             </div>
             <div class="panel-body">
-              <input type="text" th:field="*{name}"  th:class="${#fields.hasErrors('name')} ? 'field-error'"/>
+              <input type="text" th:field="*{goods}"  th:class="${#fields.hasErrors('goods')} ? 'field-error'"/>
             </div>
           </div>
 	</div>
@@ -39,10 +38,10 @@
 	 <div class="col-sm-12">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title">昵称:</h3>
+              <h3 class="panel-title">数量:</h3>
             </div>
             <div class="panel-body">
-              <input type="text" th:field="*{nickname}" th:class="${#fields.hasErrors('nickname')} ? 'field-error'" />
+              <input type="text" th:field="*{num}" th:class="${#fields.hasErrors('num')} ? 'field-error'" />
             </div>
           </div>
 	</div>
@@ -50,13 +49,10 @@
 		 <div class="col-sm-12">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title">性别:</h3>
+              <h3 class="panel-title">单位:</h3>
             </div>
             <div class="panel-body">
-              <select class="form-control" th:field="*{gender}" id="gender" th:class="${#fields.hasErrors('nickname')} ? 'field-error'">
- 					<option value="2">女</option>
- 					<option value="1">男</option>
- 				</select>
+              <input type="text" th:field="*{order_unit}" th:class="${#fields.hasErrors('order_unit')} ? 'field-error'" />
             </div>
           </div>
 	</div>
@@ -64,10 +60,10 @@
 	 <div class="col-sm-12">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title">生日:</h3>
+              <h3 class="panel-title">销售日期:</h3>
             </div>
             <div class="panel-body">
-              <input type="date" class="form-control" th:field="*{birthday}" th:class="${#fields.hasErrors('birthday')} ? 'field-error'" />
+              <input type="date" class="form-control" th:field="*{sales_date}" th:class="${#fields.hasErrors('sales_date')} ? 'field-error'" />
             </div>
           </div>
 	</div>
@@ -75,10 +71,10 @@
 		 <div class="col-sm-12">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title">手机:</h3>
+              <h3 class="panel-title">备注:</h3>
             </div>
             <div class="panel-body">
-              <input type="text" class="form-control" th:field="*{mobile}" th:class="${#fields.hasErrors('mobile')} ? 'field-error'" readonly="readonly"/>
+              <input type="text" class="form-control" th:field="*{memo}" th:class="${#fields.hasErrors('memo')} ? 'field-error'" readonly="readonly"/>
             </div>
           </div>
 	</div>

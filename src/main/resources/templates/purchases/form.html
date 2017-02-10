@@ -3,23 +3,22 @@
 	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
 	layout:decorate="layout">
 <head>
-<title>users : Create</title>
+<title>purchases : Create</title>
 </head>
 <body>
 
 	<div layout:fragment="content" class="container">
 	<div class="container theme-showcase" role="main">
-		<form id="userForm" th:action="@{/user/form}" th:object="${user}"
+		<form id="purchaseForm" th:action="@{/purchase/form}" th:object="${purchase}"
 			action="#" method="post" class="form-inline">
 			<div th:if="${#fields.hasErrors('*')}" class="alert alert-error">
 				<p th:each="error : ${#fields.errors('*')}" th:text="${error}">
 					Validation error</p>
 			</div>
 	<nav class="navbar navbar-inverse text-center" style="background-color:#EF823A;">
-          <h5>个人信息 基础信息</h5>
+          <h5>采购信息录入</h5>
     </nav>
 <input type="hidden" th:field="*{id}" th:class="${#fields.hasErrors('id')} ? 'field-error'" />
-<input type="hidden" th:field="*{pwd}" th:class="${#fields.hasErrors('pwd')} ? 'field-error'" />
 <input type="hidden" th:field="*{updateDate}" th:class="${#fields.hasErrors('updateDate')} ? 'field-error'" />
 <input type="hidden" th:field="*{createDate}" th:class="${#fields.hasErrors('createDate')} ? 'field-error'" /> 
 
@@ -28,7 +27,18 @@
     <div class="col-sm-12">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title">姓名:</h3>
+              <h3 class="panel-title">采购流水号:</h3>
+            </div>
+            <div class="panel-body">
+              <input type="text" th:field="*{id}" th:class="${#fields.hasErrors('id')} ? 'field-error'"/>
+            </div>
+          </div>
+	</div>
+	
+    <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">商品名称:</h3>
             </div>
             <div class="panel-body">
               <input type="text" th:field="*{name}"  th:class="${#fields.hasErrors('name')} ? 'field-error'"/>
@@ -39,10 +49,10 @@
 	 <div class="col-sm-12">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title">昵称:</h3>
+              <h3 class="panel-title">商品编号:</h3>
             </div>
             <div class="panel-body">
-              <input type="text" th:field="*{nickname}" th:class="${#fields.hasErrors('nickname')} ? 'field-error'" />
+              <input type="text" th:field="*{code}" th:class="${#fields.hasErrors('code')} ? 'field-error'" />
             </div>
           </div>
 	</div>
@@ -50,35 +60,10 @@
 		 <div class="col-sm-12">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title">性别:</h3>
+              <h3 class="panel-title">属性:</h3>
             </div>
             <div class="panel-body">
-              <select class="form-control" th:field="*{gender}" id="gender" th:class="${#fields.hasErrors('nickname')} ? 'field-error'">
- 					<option value="2">女</option>
- 					<option value="1">男</option>
- 				</select>
-            </div>
-          </div>
-	</div>
-	
-	 <div class="col-sm-12">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">生日:</h3>
-            </div>
-            <div class="panel-body">
-              <input type="date" class="form-control" th:field="*{birthday}" th:class="${#fields.hasErrors('birthday')} ? 'field-error'" />
-            </div>
-          </div>
-	</div>
-	
-		 <div class="col-sm-12">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">手机:</h3>
-            </div>
-            <div class="panel-body">
-              <input type="text" class="form-control" th:field="*{mobile}" th:class="${#fields.hasErrors('mobile')} ? 'field-error'" readonly="readonly"/>
+              <input type="text" th:field="*{attribute}" th:class="${#fields.hasErrors('attribute')} ? 'field-error'" />
             </div>
           </div>
 	</div>
@@ -86,10 +71,21 @@
 	<div class="col-sm-12">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title">Email:</h3>
+              <h3 class="panel-title">铭牌价格:</h3>
             </div>
             <div class="panel-body">
-              <input type="text" class="form-control" th:field="*{email}" th:class="${#fields.hasErrors('email')} ? 'field-error'" />
+              <input type="text" th:field="*{nameplate_price}" th:class="${#fields.hasErrors('nameplate_price')} ? 'field-error'" />
+            </div>
+          </div>
+	</div>
+	
+	<div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">折扣:</h3>
+            </div>
+            <div class="panel-body">
+              <input type="text" th:field="*{rebate}" th:class="${#fields.hasErrors('rebate')} ? 'field-error'" />
             </div>
           </div>
 	</div>
@@ -97,15 +93,81 @@
 		<div class="col-sm-12">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title">学校:</h3>
+              <h3 class="panel-title">采购价格:</h3>
             </div>
             <div class="panel-body">
-              <input type="text" class="form-control" th:field="*{school}" th:class="${#fields.hasErrors('school')} ? 'field-error'" />
+              <input type="text" th:field="*{purchase_price}" th:class="${#fields.hasErrors('purchase_price')} ? 'field-error'" />
+            </div>
+          </div>
+	</div>
+	
+	<div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">采购员:</h3>
+            </div>
+            <div class="panel-body">
+              <input type="text" th:field="*{purchasing_agent}" th:class="${#fields.hasErrors('purchasing_agent')} ? 'field-error'" />
+            </div>
+          </div>
+	</div>
+	
+	<div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">采购数量:</h3>
+            </div>
+            <div class="panel-body">
+              <input type="text" th:field="*{num}" th:class="${#fields.hasErrors('num')} ? 'field-error'" />
+            </div>
+          </div>
+	</div>
+	
+	<div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">单位:</h3>
+            </div>
+            <div class="panel-body">
+              <input type="text" th:field="*{purchase_unit}" th:class="${#fields.hasErrors('purchase_unit')} ? 'field-error'" />
+            </div>
+          </div>
+	</div>
+	
+		 <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">采购日期:</h3>
+            </div>
+            <div class="panel-body">
+              <input type="date" class="form-control" th:field="*{purchasing_date}" th:class="${#fields.hasErrors('purchasing_date')} ? 'field-error'" />
+            </div>
+          </div>
+	</div>
+	
+		<div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">供应商信息:</h3>
+            </div>
+            <div class="panel-body">
+              <input type="text" th:field="*{company}" th:class="${#fields.hasErrors('company')} ? 'field-error'" />
+            </div>
+          </div>
+	</div>
+	
+		<div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">账期信息:</h3>
+            </div>
+            <div class="panel-body">
+              <input type="text" th:field="*{account_period}" th:class="${#fields.hasErrors('account_period')} ? 'field-error'" />
             </div>
           </div>
 	</div>
 			<div class="col-sm-12">
-	<button type="submit" class="btn btn-default active form-control">下一步</button>
+	<button type="submit" class="btn btn-default active form-control">提交</button>
 </div>
 		</form>
 	</div>
