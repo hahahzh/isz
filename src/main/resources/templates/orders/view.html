@@ -1,0 +1,182 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<title>orders : View</title>
+</head>
+<body>
+	<div layout:fragment="content" class="container">
+		<div class="alert alert-success" th:if="${globalOrder}"
+			th:text="${globalOrder}">Some Success order</div>
+		<div class="pull-right">
+			<a th:href="@{/}" href="list.html"> orders </a>
+		</div>
+		
+		<nav class="navbar navbar-inverse text-center" style="background-color:#EF823A;">
+          <h5>订单详情</h5>
+    </nav>
+
+<div class="alert alert-success" role="alert"  th:if="${globalMessage}" th:text="${globalMessage}"></div>
+
+    <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">订单流水号:</h3>
+            </div>
+            <div class="panel-body">
+              <label th:text="${order.id}"></label>
+            </div>
+          </div>
+	</div>
+	
+    <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">商品名称:</h3>
+            </div>
+            <div class="panel-body">
+              <label th:text="${order.goods.name}"></label>
+            </div>
+          </div>
+	</div>
+	
+	 <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">商品价格:</h3>
+            </div>
+            <div class="panel-body">
+              <label th:text="${order.goods.nameplate_price}"></label>
+            </div>
+          </div>
+	</div>
+	
+	 <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">折扣:</h3>
+            </div>
+            <div class="panel-body">
+              <label th:text="${order.goods.rebate}"></label>
+            </div>
+          </div>
+	</div>
+	
+	 <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">实际价格:</h3>
+            </div>
+            <div class="panel-body">
+              <label th:text="${order.goods.sales_price}"></label>
+            </div>
+          </div>
+	</div>
+	
+		<div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">数量:</h3>
+            </div>
+            <div class="panel-body">
+              <label th:text="${order.num}"></label>
+            </div>
+          </div>
+	</div>
+	
+	<div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">单位:</h3>
+            </div>
+            <div class="panel-body">
+              <label th:text="${order.order_unit}"></label>
+            </div>
+          </div>
+	</div>
+	
+	<div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">日期:</h3>
+            </div>
+            <div class="panel-body">
+              <label th:text="${calendars.format(order.sales_date)}"></label>
+            </div>
+          </div>
+	</div>
+	
+	<div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">备注:</h3>
+            </div>
+            <div class="panel-body">
+              <label th:text="${order.memo}"></label>
+            </div>
+          </div>
+	</div>
+	
+		<div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">客户:</h3>
+            </div>
+            <div class="panel-body">
+              <label th:text="${order.user.name}"></label>
+            </div>
+          </div>
+	</div>
+	
+	<div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">手机号:</h3>
+            </div>
+            <div class="panel-body">
+              <label th:text="${order.user_tmp}"></label>
+            </div>
+          </div>
+	</div>
+	
+	 <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">物流状态:</h3>
+            </div>
+            <div class="panel-body">
+              <label th:text="${order.logistics}"></label>
+            </div>
+          </div>
+	</div>
+	
+	<div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">支付状态:</h3>
+            </div>
+            <div class="panel-body">
+              <label th:text="${order.pay}"></label>
+            </div>
+          </div>
+	</div>
+	
+		 <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">录入日期:</h3>
+            </div>
+            <div class="panel-body">
+              <label th:text="${calendars.format(order.createDate)}"></label>
+            </div>
+          </div>
+	</div>
+	
+		<div class="pull-left">
+			<a href="orders" th:href="@{'/delete/' + ${order.id}}">
+				delete </a> | <a href="form.html"
+				th:href="@{'/modify/' + ${order.id}}"> modify </a>
+		</div>
+	</div>
+</body>
+</html>

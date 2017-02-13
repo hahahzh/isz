@@ -29,6 +29,7 @@ public class Order  {
 	@NotNull
 	private Integer num;
 	
+	
 	private String order_unit;
 	
 	@Column(columnDefinition="TIMESTAMP")
@@ -225,6 +226,22 @@ public class Order  {
 	public void setIsShow(int isShow) {
 		this.isShow = isShow;
 	}
+
+
+	public Goods getGoods() {
+		return goods;
+	}
+
+
+
+
+	public void setGoods(Goods goods) {
+		this.goods = goods;
+	}
+
+
+
+
 
 
 	public String toString() {

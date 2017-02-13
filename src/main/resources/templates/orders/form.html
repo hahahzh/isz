@@ -82,10 +82,10 @@
 	<div class="col-sm-12">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title">Email:</h3>
+              <h3 class="panel-title">物流状态:</h3>
             </div>
             <div class="panel-body">
-              <input type="text" class="form-control" th:field="*{email}" th:class="${#fields.hasErrors('email')} ? 'field-error'" />
+              <input type="text" class="form-control" th:field="*{logistics}" th:class="${#fields.hasErrors('logistics')} ? 'field-error'" />
             </div>
           </div>
 	</div>
@@ -93,10 +93,32 @@
 		<div class="col-sm-12">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title">学校:</h3>
+              <h3 class="panel-title">支付状态:</h3>
             </div>
             <div class="panel-body">
-              <input type="text" class="form-control" th:field="*{school}" th:class="${#fields.hasErrors('school')} ? 'field-error'" />
+              <input type="text" class="form-control" th:field="*{pay}" th:class="${#fields.hasErrors('pay')} ? 'field-error'" />
+            </div>
+          </div>
+	</div>
+	
+	<div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">用户信息:</h3>
+            </div>
+            <div class="panel-body">
+              <input type="text" th:field="*{user}"  th:class="${#fields.hasErrors('user')} ? 'field-error'"/>
+            </div>
+          </div>
+	</div>
+	
+		<div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">用户手机:</h3>
+            </div>
+            <div class="panel-body">
+              <input type="text" th:field="*{user_tmp}"  th:class="${#fields.hasErrors('user_tmp')} ? 'field-error'"/>
             </div>
           </div>
 	</div>

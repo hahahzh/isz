@@ -1,0 +1,170 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<title>goodss : View</title>
+</head>
+<body>
+	<div layout:fragment="content" class="container">
+		<div class="alert alert-success" th:if="${globalGoods}"
+			th:text="${globalGoods}">Some Success goods</div>
+		<div class="pull-right">
+			<a th:href="@{/}" href="list.html"> goodss </a>
+		</div>
+		
+		<nav class="navbar navbar-inverse text-center" style="background-color:#EF823A;">
+          <h5>商品详情</h5>
+    </nav>
+
+<div class="alert alert-success" role="alert"  th:if="${globalMessage}" th:text="${globalMessage}"></div>
+
+    <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">商品流水号:</h3>
+            </div>
+            <div class="panel-body">
+              <label th:text="${goods.id}"></label>
+            </div>
+          </div>
+	</div>
+	
+    <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">商品名称:</h3>
+            </div>
+            <div class="panel-body">
+              <label th:text="${goods.name}"></label>
+            </div>
+          </div>
+	</div>
+	
+	 <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">商品编号:</h3>
+            </div>
+            <div class="panel-body">
+              <label th:text="${goods.code}"></label>
+            </div>
+          </div>
+	</div>
+	
+		<div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">销售数量:</h3>
+            </div>
+            <div class="panel-body">
+              <label th:text="${goods.num}"></label>
+            </div>
+          </div>
+	</div>
+	
+	<div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">单位:</h3>
+            </div>
+            <div class="panel-body">
+              <label th:text="${goods.goods_unit}"></label>
+            </div>
+          </div>
+	</div>
+	
+	<div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">铭牌价格:</h3>
+            </div>
+            <div class="panel-body">
+              <label th:text="${goods.nameplate_price}"></label>
+            </div>
+          </div>
+	</div>
+	
+	<div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">折扣:</h3>
+            </div>
+            <div class="panel-body">
+              <label th:text="${goods.rebate}"></label>
+            </div>
+          </div>
+	</div>
+	
+		<div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">销售价格:</h3>
+            </div>
+            <div class="panel-body">
+              <label th:text="${goods.sales_price}"></label>
+            </div>
+          </div>
+	</div>
+	
+	<div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">备注:</h3>
+            </div>
+            <div class="panel-body">
+              <label th:text="${goods.memo}"></label>
+            </div>
+          </div>
+	</div>
+	
+	 <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">销售日期(开始):</h3>
+            </div>
+            <div class="panel-body">
+              <label th:text="${calendars.format(goods.date_from)}"></label>
+            </div>
+          </div>
+	</div>
+	
+	<div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">销售日期(结束):</h3>
+            </div>
+            <div class="panel-body">
+              <label th:text="${calendars.format(goods.date_end)}"></label>
+            </div>
+          </div>
+	</div>
+	
+		<div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">更新日期:</h3>
+            </div>
+            <div class="panel-body">
+              <label th:text="${calendars.format(goods.updateDate)}"></label>
+            </div>
+          </div>
+	</div>
+	
+	<div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">录入日期:</h3>
+            </div>
+            <div class="panel-body">
+              <label th:text="${calendars.format(goods.createDate)}"></label>
+            </div>
+          </div>
+	</div>
+		<div class="pull-left">
+			<a href="goodss" th:href="@{'/delete/' + ${goods.id}}">
+				delete </a> | <a href="form.html"
+				th:href="@{'/modify/' + ${goods.id}}"> modify </a>
+		</div>
+	</div>
+</body>
+</html>
