@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -23,9 +24,13 @@ public class Order  {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	@NotNull
+	
+	@OneToOne
 	private Goods goods;
 
+	@NotNull
+	private String code;
+	
 	@NotNull
 	private Integer num;
 	
@@ -89,6 +94,20 @@ public class Order  {
 
 	public void setNum(Integer num) {
 		this.num = num;
+	}
+
+
+
+
+	public String getCode() {
+		return code;
+	}
+
+
+
+
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 
